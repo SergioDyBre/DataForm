@@ -1,0 +1,43 @@
+<div class="content mx-auto my-5" style="max-width: 500px">
+    <div class="flex-row">
+        <div>
+            <h2>Login</h2>
+        </div>
+        <div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" formControlName="username" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && formControls.username.errors }" />
+                    <div *ngIf="submitted && formControls.username.errors" class="invalid-feedback">
+                        <div *ngIf="formControls.username.errors.required">Se requiere un nombre de usuario</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }" />
+                    <div *ngIf="submitted && formControls.password.errors" class="invalid-feedback">
+                        <div *ngIf="formControls.password.errors.required">Se requiere una contraseña</div>
+                    </div>
+                </div>
+                <div>
+                    <span *ngIf="error">
+                        <div class="alert alert-dismissible alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Nombre de usuario o contraseña incorrectos. </strong>
+                            Revisa las credenciales de acceso para asegurar que sean correctas.
+                        </div>
+                        
+                    </span>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Iniciar sesión
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
